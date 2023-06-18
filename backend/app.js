@@ -8,7 +8,7 @@ const path = require("path");
 
 app.use(
   cors({
-    origin: "https://websitebangiay-2958.vercel.app",
+    origin: "*",
     credentials: true,
   })
 );
