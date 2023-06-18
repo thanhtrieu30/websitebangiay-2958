@@ -41,6 +41,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     const activationToken = createActivationToken(user);
 
     const activationUrl = `https://websitebangiay-2958.vercel.app/activation/${activationToken}`;
+    // const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -164,7 +165,7 @@ router.get(
   catchAsyncErrors(async (req, res, next) => {
     try {
       res.cookie("token", null, {
-        expires: new Date(1970, 1, 1),
+        expires: new Date(Date.now()),
         httpOnly: true,
       });
       res.status(201).json({

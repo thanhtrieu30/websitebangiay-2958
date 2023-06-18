@@ -11,6 +11,8 @@ app.use(
     origin: [
       "https://websitebangiay-2958.vercel.app",
       "https://websitebangiay-2958.vercel.app/",
+      // "http://localhost:3000",
+      // "http://localhost:3000/",
     ],
     credentials: true,
   })
