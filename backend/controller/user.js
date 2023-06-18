@@ -163,11 +163,10 @@ router.get(
   "/logout",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      // res.cookie("token", null, {
-      //   expires: new Date(Date.now()),
-      //   httpOnly: true,
-      // });
-      res.clearCookie("token");
+      res.cookie("token", null, {
+        expires: new Date(1970, 1, 1),
+        httpOnly: true,
+      });
       res.status(201).json({
         success: true,
         message: "đăng xuất thành công!",
