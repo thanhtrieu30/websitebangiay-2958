@@ -44,7 +44,7 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `https://websitebangiay-2958-api.vercel.app/seller/activation/${activationToken}`;
+    const activationUrl = `https://websitebangiay-2958-apii.vercel.app/seller/activation/${activationToken}`;
 
     try {
       await sendMail({
