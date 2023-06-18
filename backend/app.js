@@ -9,7 +9,7 @@ const path = require("path");
 app.use(
   cors({
     origin: "*",
-    credentials: true,
+    // credentials: true,
   })
 );
 
