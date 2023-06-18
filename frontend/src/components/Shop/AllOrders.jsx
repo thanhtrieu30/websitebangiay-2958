@@ -18,11 +18,11 @@ const AllOrders = () => {
   }, [dispatch]);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "ID đơn hàng", minWidth: 150, flex: 0.7 },
 
     {
       field: "status",
-      headerName: "Status",
+      headerName: "Trạng thái",
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
@@ -33,7 +33,7 @@ const AllOrders = () => {
     },
     {
       field: "itemsQty",
-      headerName: "Items Qty",
+      headerName: "Số lượng",
       type: "number",
       minWidth: 130,
       flex: 0.7,
@@ -41,7 +41,7 @@ const AllOrders = () => {
 
     {
       field: "total",
-      headerName: "Total",
+      headerName: "Tiền đơn hàng",
       type: "number",
       minWidth: 130,
       flex: 0.8,
@@ -75,7 +75,7 @@ const AllOrders = () => {
       row.push({
         id: item._id,
         itemsQty: item.cart.length,
-        total: "US$ " + item.totalPrice,
+        total: item.totalPrice + "k",
         status: item.status,
       });
     });

@@ -26,7 +26,7 @@ const Faq = () => {
 
   return (
     <div className={`${styles.section} my-8`}>
-      <h2 className="text-3xl font-bold text-gray-900 mb-8">FAQ</h2>
+      <h2 className="text-3xl font-bold text-gray-900 mb-8">Hỏi đáp</h2>
       <div className="mx-auto space-y-4">
         {/* single Faq */}
 
@@ -36,7 +36,7 @@ const Faq = () => {
             onClick={() => toggleTab(2)}
           >
             <span className="text-lg font-medium text-gray-900">
-              What is your return policy?
+              Khi nhận giày có được kiểm tra hàng trước khi thanh toán không?
             </span>
             {activeTab === 2 ? (
               <svg
@@ -70,12 +70,7 @@ const Faq = () => {
           </button>
           {activeTab === 2 && (
             <div className="mt-4">
-              <p className="text-base text-gray-500">
-                If you're not satisfied with your purchase, we accept returns
-                within 30 days of delivery. To initiate a return, please email
-                us at support@myecommercestore.com with your order number and a
-                brief explanation of why you're returning the item.
-              </p>
+              <p className="text-base text-gray-500">– Tất nhiên rồi bạn ạ</p>
             </div>
           )}
         </div>
@@ -86,7 +81,7 @@ const Faq = () => {
             onClick={() => toggleTab(3)}
           >
             <span className="text-lg font-medium text-gray-900">
-              How do I track my order?
+              Khi nhận giày từ Shipper có được thử trực tiếp đo chân không?
             </span>
             {activeTab === 3 ? (
               <svg
@@ -121,9 +116,8 @@ const Faq = () => {
           {activeTab === 3 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-                You can track your order by clicking the tracking link in your
-                shipping confirmation email, or by logging into your account on
-                our website and viewing the order details.
+                – Được bạn ạ, bạn thử vui lòng đặt giày lên bề mặt sạch, không
+                bẩn nhé. Khi cho chân vào thử thì nhớ đi tất, vớ nhé.
               </p>
             </div>
           )}
@@ -135,7 +129,7 @@ const Faq = () => {
             onClick={() => toggleTab(4)}
           >
             <span className="text-lg font-medium text-gray-900">
-              How do I contact customer support?
+              Làm cách nào để chọn đúng size?
             </span>
             {activeTab === 4 ? (
               <svg
@@ -170,9 +164,10 @@ const Faq = () => {
           {activeTab === 4 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-                You can contact our customer support team by emailing us at
-                support@myecommercestore.com, or by calling us at (555) 123-4567
-                between the hours of 9am and 5pm EST, Monday through Friday.
+                – Quý khách có thể đo chiều dài chân bằng cách đặt chân lên giấy
+                A4 và áp sát vào tường rồi cầm bút vạch phần gót chân và phần
+                mũi bàn chân rồi đo kích thước nhé. Sau đó đối chiếu với bảng
+                chuyển đổi size giày để tìm ra size giày của mình.
               </p>
             </div>
           )}
@@ -184,7 +179,7 @@ const Faq = () => {
             onClick={() => toggleTab(5)}
           >
             <span className="text-lg font-medium text-gray-900">
-              Can I change or cancel my order?
+              Mua giày xong có được bảo hành không?
             </span>
             {activeTab === 5 ? (
               <svg
@@ -219,10 +214,7 @@ const Faq = () => {
           {activeTab === 5 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-                Unfortunately, once an order has been placed, we are not able to
-                make changes or cancellations. If you no longer want the items
-                you've ordered, you can return them for a refund within 30 days
-                of delivery.
+                Có ạ, mời tham khảo chi tiết về chế độ bảo hành, đổi trả ạ.
               </p>
             </div>
           )}
@@ -234,7 +226,7 @@ const Faq = () => {
             onClick={() => toggleTab(6)}
           >
             <span className="text-lg font-medium text-gray-900">
-              Do you offer international shipping?
+              Mua giày mà sai kích thước có hỗ trợ đổi trả không?
             </span>
             {activeTab === 6 ? (
               <svg
@@ -269,7 +261,7 @@ const Faq = () => {
           {activeTab === 6 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-                Currently, we only offer shipping within the United States.
+                Có bạn nha, bạn vui lòng thanh toán phí ship 2 chiều nhé.
               </p>
             </div>
           )}
@@ -281,7 +273,7 @@ const Faq = () => {
             onClick={() => toggleTab(7)}
           >
             <span className="text-lg font-medium text-gray-900">
-              What payment methods do you accept?
+              Chính sách Đổi Trả được áp dụng khi nào ?
             </span>
             {activeTab === 7 ? (
               <svg
@@ -316,8 +308,10 @@ const Faq = () => {
           {activeTab === 7 && (
             <div className="mt-4">
               <p className="text-base text-gray-500">
-                We accept visa,mastercard,paypal payment method also we have
-                cash on delivery system.
+                - Hỗ trợ đổi size tại nhà mà KHÔNG mất thêm phụ phí, khách hàng
+                vui lòng thanh toán phí ship 2 chiều. - Trường hợp không còn
+                size để đổi trả, khách hàng được đổi 1 lần duy nhất sang mẫu
+                giày khác và không thấp hơn giá trị sản phẩm đã mua.
               </p>
             </div>
           )}

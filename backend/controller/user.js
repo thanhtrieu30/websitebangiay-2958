@@ -40,17 +40,18 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://eshop-tutorial-cefl.vercel.app/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {
       await sendMail({
         email: user.email,
-        subject: "Activate your account",
-        message: `Hello ${user.name}, please click on the link to activate your account: ${activationUrl}`,
+        subject: "Kích hoạt tài khoản",
+        message: `Xin chào ${user.name}, vui lòng click vào đường link để xác nhận đăng ký tài khoản cá nhân của bạn: ${activationUrl} ,
+         sau khi click bạn có thể tắt nó và đăng nhập vào trang chủ `,
       });
       res.status(201).json({
         success: true,
-        message: `please check your email:- ${user.email} to activate your account!`,
+        message: `Vui lòng kiểm tra email:- ${user.email} để kích hoạt !`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -80,14 +81,14 @@ router.post(
       );
 
       if (!newUser) {
-        return next(new ErrorHandler("Invalid token", 400));
+        return next(new ErrorHandler("Mã không hợp lệ", 400));
       }
       const { name, email, password, avatar } = newUser;
 
       let user = await User.findOne({ email });
 
       if (user) {
-        return next(new ErrorHandler("User already exists", 400));
+        return next(new ErrorHandler("Người dùng đã tồn tại", 400));
       }
       user = await User.create({
         name,
@@ -111,20 +112,20 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("Vui lòng cung cấp đủ thông tin!", 400));
       }
 
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("Người dùng không tồn tại!", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("Vui lòng cung cấp chính xác thông tin", 400)
         );
       }
 
@@ -144,7 +145,7 @@ router.get(
       const user = await User.findById(req.user.id);
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists", 400));
+        return next(new ErrorHandler("Người dùng không tồn tại", 400));
       }
 
       res.status(200).json({
@@ -168,7 +169,7 @@ router.get(
       });
       res.status(201).json({
         success: true,
-        message: "Log out successful!",
+        message: "đăng xuất thành công!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -187,14 +188,14 @@ router.put(
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User not found", 400));
+        return next(new ErrorHandler("không tìm thấy người dùng", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("vui long cung cap chinh xac thong tin", 400)
         );
       }
 
@@ -255,9 +256,7 @@ router.put(
         (address) => address.addressType === req.body.addressType
       );
       if (sameTypeAddress) {
-        return next(
-          new ErrorHandler(`${req.body.addressType} address already exists`)
-        );
+        return next(new ErrorHandler(`${req.body.addressType} đã tồn tại`));
       }
 
       const existsAddress = user.addresses.find(
@@ -323,13 +322,11 @@ router.put(
       );
 
       if (!isPasswordMatched) {
-        return next(new ErrorHandler("Old password is incorrect!", 400));
+        return next(new ErrorHandler("mật khẩu cũ không đúng!", 400));
       }
 
       if (req.body.newPassword !== req.body.confirmPassword) {
-        return next(
-          new ErrorHandler("Password doesn't matched with each other!", 400)
-        );
+        return next(new ErrorHandler("Mật khẩu không khớp với nhau!", 400));
       }
       user.password = req.body.newPassword;
 
@@ -337,7 +334,7 @@ router.put(
 
       res.status(200).json({
         success: true,
-        message: "Password updated successfully!",
+        message: "Đã cập nhật mật khẩu thành công!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -393,7 +390,7 @@ router.delete(
 
       if (!user) {
         return next(
-          new ErrorHandler("User is not available with this id", 400)
+          new ErrorHandler("Người dùng không khả dụng với id này", 400)
         );
       }
 
@@ -401,7 +398,7 @@ router.delete(
 
       res.status(201).json({
         success: true,
-        message: "User deleted successfully!",
+        message: "Người dùng đã xóa thành công!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));

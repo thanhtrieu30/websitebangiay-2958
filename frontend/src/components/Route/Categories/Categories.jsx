@@ -16,7 +16,9 @@ const Categories = () => {
               <div className="flex items-start" key={index}>
                 {i.icon}
                 <div className="px-3">
-                  <h3 className="font-bold text-sm md:text-base">{i.title}</h3>
+                  <h3 className="font-bold text-[#df3b56]  text-sm md:text-base">
+                    {i.title}
+                  </h3>
                   <p className="text-xs md:text-sm">{i.Description}</p>
                 </div>
               </div>
@@ -40,7 +42,11 @@ const Categories = () => {
                   key={i.id}
                   onClick={() => handleSubmit(i)}
                 >
-                  <h5 className={`text-[18px] leading-[1.3]`}>{i.title}</h5>
+                  <h5
+                    className={`text-[18px] leading-[1.3] text-[#d63b3b] font-bold`}
+                  >
+                    {i.title}
+                  </h5>
                   <img
                     src={i.image_Url}
                     className="w-[120px] object-cover"

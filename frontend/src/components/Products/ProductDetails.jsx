@@ -61,14 +61,14 @@ const ProductDetails = ({ data }) => {
   const addToCartHandler = (id) => {
     const isItemExists = cart && cart.find((i) => i._id === id);
     if (isItemExists) {
-      toast.error("Item already in cart!");
+      toast.error("Sản phẩm đã có trong giỏ hàng!");
     } else {
       if (data.stock < 1) {
-        toast.error("Product stock limited!");
+        toast.error("Sản phẩm trong kho đã giới hạn!");
       } else {
         const cartData = { ...data, qty: count };
         dispatch(addTocart(cartData));
-        toast.success("Item added to cart successfully!");
+        toast.success("Thêm sản phẩm vào giỏ hàng thành công!");
       }
     }
   };
@@ -85,10 +85,9 @@ const ProductDetails = ({ data }) => {
       0
     );
 
-  const avg =  totalRatings / totalReviewsLength || 0;
+  const avg = totalRatings / totalReviewsLength || 0;
 
   const averageRating = avg.toFixed(2);
-
 
   const handleMessageSubmit = async () => {
     if (isAuthenticated) {
@@ -108,7 +107,7 @@ const ProductDetails = ({ data }) => {
           toast.error(error.response.data.message);
         });
     } else {
-      toast.error("Please login to create a conversation");
+      toast.error("Vui lòng đăng nhập để tạo cuộc trò chuyện");
     }
   };
 
@@ -152,10 +151,10 @@ const ProductDetails = ({ data }) => {
                 <p>{data.description}</p>
                 <div className="flex pt-3">
                   <h4 className={`${styles.productDiscountPrice}`}>
-                    {data.discountPrice}$
+                    {data.discountPrice}k
                   </h4>
                   <h3 className={`${styles.price}`}>
-                    {data.originalPrice ? data.originalPrice + "$" : null}
+                    {data.originalPrice ? data.originalPrice + "k" : null}
                   </h3>
                 </div>
 
@@ -202,7 +201,7 @@ const ProductDetails = ({ data }) => {
                   onClick={() => addToCartHandler(data._id)}
                 >
                   <span className="text-white flex items-center">
-                    Add to cart <AiOutlineShoppingCart className="ml-1" />
+                    Thêm vào giỏ hàng <AiOutlineShoppingCart className="ml-1" />
                   </span>
                 </div>
                 <div className="flex items-center pt-8">
@@ -220,7 +219,7 @@ const ProductDetails = ({ data }) => {
                       </h3>
                     </Link>
                     <h5 className="pb-3 text-[15px]">
-                      ({averageRating}/5) Ratings
+                      ({averageRating}/5) đánh giá
                     </h5>
                   </div>
                   <div
@@ -228,7 +227,7 @@ const ProductDetails = ({ data }) => {
                     onClick={handleMessageSubmit}
                   >
                     <span className="text-white flex items-center">
-                      Send Message <AiOutlineMessage className="ml-1" />
+                      Gửi tin nhắn <AiOutlineMessage className="ml-1" />
                     </span>
                   </div>
                 </div>
@@ -267,7 +266,7 @@ const ProductDetailsInfo = ({
             }
             onClick={() => setActive(1)}
           >
-            Product Details
+            Chi tiết sản phẩm
           </h5>
           {active === 1 ? (
             <div className={`${styles.active_indicator}`} />
@@ -280,7 +279,7 @@ const ProductDetailsInfo = ({
             }
             onClick={() => setActive(2)}
           >
-            Product Reviews
+            Đánh giá sản phẩm
           </h5>
           {active === 2 ? (
             <div className={`${styles.active_indicator}`} />
@@ -293,7 +292,7 @@ const ProductDetailsInfo = ({
             }
             onClick={() => setActive(3)}
           >
-            Seller Information
+            Thông tin cửa hàng
           </h5>
           {active === 3 ? (
             <div className={`${styles.active_indicator}`} />
@@ -329,9 +328,7 @@ const ProductDetailsInfo = ({
             ))}
 
           <div className="w-full flex justify-center">
-            {data && data.reviews.length === 0 && (
-              <h5>No Reviews have for this product!</h5>
-            )}
+            {data && data.reviews.length === 0 && <h5>Chưa có đánh giá!</h5>}
           </div>
         </div>
       ) : null}
@@ -349,7 +346,7 @@ const ProductDetailsInfo = ({
                 <div className="pl-3">
                   <h3 className={`${styles.shop_name}`}>{data.shop.name}</h3>
                   <h5 className="pb-2 text-[15px]">
-                    ({averageRating}/5) Ratings
+                    ({averageRating}/5) đánh giá
                   </h5>
                 </div>
               </div>
@@ -359,26 +356,26 @@ const ProductDetailsInfo = ({
           <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
             <div className="text-left">
               <h5 className="font-[600]">
-                Joined on:{" "}
+                Đã gia nhập:{" "}
                 <span className="font-[500]">
                   {data.shop?.createdAt?.slice(0, 10)}
                 </span>
               </h5>
               <h5 className="font-[600] pt-3">
-                Total Products:{" "}
+                Tổng sản phẩm:{" "}
                 <span className="font-[500]">
                   {products && products.length}
                 </span>
               </h5>
               <h5 className="font-[600] pt-3">
-                Total Reviews:{" "}
+                Tổng đánh giá:{" "}
                 <span className="font-[500]">{totalReviewsLength}</span>
               </h5>
               <Link to="/">
                 <div
                   className={`${styles.button} !rounded-[4px] !h-[39.5px] mt-3`}
                 >
-                  <h4 className="text-white">Visit Shop</h4>
+                  <h4 className="text-white">Ghé thăm cửa hàng</h4>
                 </div>
               </Link>
             </div>

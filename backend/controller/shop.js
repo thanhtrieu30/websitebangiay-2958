@@ -23,10 +23,10 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
       fs.unlink(filePath, (err) => {
         if (err) {
           console.log(err);
-          res.status(500).json({ message: "Error deleting file" });
+          res.status(500).json({ message: "Lỗi" });
         }
       });
-      return next(new ErrorHandler("User already exists", 400));
+      return next(new ErrorHandler("Người dùng đã tồn tại", 400));
     }
 
     const filename = req.file.filename;
@@ -44,17 +44,18 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `https://eshop-tutorial-cefl.vercel.app/seller/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3000/seller/activation/${activationToken}`;
 
     try {
       await sendMail({
         email: seller.email,
-        subject: "Activate your Shop",
-        message: `Hello ${seller.name}, please click on the link to activate your shop: ${activationUrl}`,
+        subject: "Kích hoạt cửa hàng",
+        message: `Xin chào ${seller.name}, vui lòng click vào đường link để xác nhận đăng ký tài khoản cửa hàng của bạn : ${activationUrl} ,
+         sau khi click bạn có thể tắt nó và đăng nhập vào cửa hàng `,
       });
       res.status(201).json({
         success: true,
-        message: `please check your email:- ${seller.email} to activate your shop!`,
+        message: `Vui lòng check email :- ${seller.email} !`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -84,7 +85,7 @@ router.post(
       );
 
       if (!newSeller) {
-        return next(new ErrorHandler("Invalid token", 400));
+        return next(new ErrorHandler("Mã không hợp lệ", 400));
       }
       const { name, email, password, avatar, zipCode, address, phoneNumber } =
         newSeller;
@@ -92,7 +93,7 @@ router.post(
       let seller = await Shop.findOne({ email });
 
       if (seller) {
-        return next(new ErrorHandler("User already exists", 400));
+        return next(new ErrorHandler("Người dùng đã tồn tại", 400));
       }
 
       seller = await Shop.create({
@@ -120,20 +121,20 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("Vui lòng cung cấp đủ thông tin!", 400));
       }
 
       const user = await Shop.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("Người dùng không tồn tại!", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
 
       if (!isPasswordValid) {
         return next(
-          new ErrorHandler("Please provide the correct information", 400)
+          new ErrorHandler("Vui lòng cung cấp chính xác thông tin", 400)
         );
       }
 
@@ -153,7 +154,7 @@ router.get(
       const seller = await Shop.findById(req.seller._id);
 
       if (!seller) {
-        return next(new ErrorHandler("User doesn't exists", 400));
+        return next(new ErrorHandler("Người dùng không tồn tại", 400));
       }
 
       res.status(200).json({
@@ -177,7 +178,7 @@ router.get(
       });
       res.status(201).json({
         success: true,
-        message: "Log out successful!",
+        message: "đăng xuất thành công!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -241,7 +242,7 @@ router.put(
       const shop = await Shop.findOne(req.seller._id);
 
       if (!shop) {
-        return next(new ErrorHandler("User not found", 400));
+        return next(new ErrorHandler("Không tìm thấy người dùng", 400));
       }
 
       shop.name = name;
@@ -292,16 +293,14 @@ router.delete(
       const seller = await Shop.findById(req.params.id);
 
       if (!seller) {
-        return next(
-          new ErrorHandler("Seller is not available with this id", 400)
-        );
+        return next(new ErrorHandler("Người bán không có sẵn với id này", 400));
       }
 
       await Shop.findByIdAndDelete(req.params.id);
 
       res.status(201).json({
         success: true,
-        message: "Seller deleted successfully!",
+        message: "Người bán đã xóa thành công!",
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -340,7 +339,9 @@ router.delete(
       const seller = await Shop.findById(req.seller._id);
 
       if (!seller) {
-        return next(new ErrorHandler("Seller not found with this id", 400));
+        return next(
+          new ErrorHandler("Không tìm thấy người bán với id này", 400)
+        );
       }
 
       seller.withdrawMethod = null;

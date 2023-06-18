@@ -24,22 +24,22 @@ const AllProducts = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "Product Id", minWidth: 150, flex: 0.7 },
+    { field: "id", headerName: "ID sản phẩm", minWidth: 150, flex: 0.7 },
     {
       field: "name",
-      headerName: "Name",
+      headerName: "Tên sp",
       minWidth: 180,
       flex: 1.4,
     },
     {
       field: "price",
-      headerName: "Price",
+      headerName: "Giá sp",
       minWidth: 100,
       flex: 0.6,
     },
     {
       field: "Stock",
-      headerName: "Stock",
+      headerName: "Kho",
       type: "number",
       minWidth: 80,
       flex: 0.5,
@@ -47,13 +47,13 @@ const AllProducts = () => {
 
     {
       field: "sold",
-      headerName: "Sold out",
+      headerName: "Đã bán",
       type: "number",
       minWidth: 130,
       flex: 0.6,
     },
     {
-      field: "Preview",
+      field: "Đánh giá",
       flex: 0.8,
       minWidth: 100,
       headerName: "",
@@ -72,7 +72,7 @@ const AllProducts = () => {
       },
     },
     {
-      field: "Delete",
+      field: "Xóa",
       flex: 0.8,
       minWidth: 120,
       headerName: "",
@@ -97,7 +97,7 @@ const AllProducts = () => {
       row.push({
         id: item._id,
         name: item.name,
-        price: "US$ " + item.discountPrice,
+        price: item.discountPrice + "k",
         Stock: item.stock,
         sold: item?.sold_out,
       });

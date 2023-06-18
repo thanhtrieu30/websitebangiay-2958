@@ -34,7 +34,7 @@ const ShopProfileData = ({ isOwner }) => {
                 active === 1 ? "text-red-500" : "text-[#333]"
               } cursor-pointer pr-[20px]`}
             >
-              Shop Products
+              Sản phẩm cửa hàng
             </h5>
           </div>
           <div className="flex items-center" onClick={() => setActive(2)}>
@@ -43,7 +43,7 @@ const ShopProfileData = ({ isOwner }) => {
                 active === 2 ? "text-red-500" : "text-[#333]"
               } cursor-pointer pr-[20px]`}
             >
-              Running Events
+              Sự kiện đang diễn ra
             </h5>
           </div>
 
@@ -53,7 +53,7 @@ const ShopProfileData = ({ isOwner }) => {
                 active === 3 ? "text-red-500" : "text-[#333]"
               } cursor-pointer pr-[20px]`}
             >
-              Shop Reviews
+              Đánh giá cửa hàng
             </h5>
           </div>
         </div>
@@ -62,7 +62,7 @@ const ShopProfileData = ({ isOwner }) => {
             <div>
               <Link to="/dashboard">
                 <div className={`${styles.button} !rounded-[4px] h-[42px]`}>
-                  <span className="text-[#fff]">Go Dashboard</span>
+                  <span className="text-[#fff]">Trang quản lý</span>
                 </div>
               </Link>
             </div>
@@ -95,7 +95,7 @@ const ShopProfileData = ({ isOwner }) => {
           </div>
           {events && events.length === 0 && (
             <h5 className="w-full text-center py-5 text-[18px]">
-              No Events have for this shop!
+              Chưa có sự kiện nào đang diễn ra!
             </h5>
           )}
         </div>
@@ -123,7 +123,7 @@ const ShopProfileData = ({ isOwner }) => {
             ))}
           {allReviews && allReviews.length === 0 && (
             <h5 className="w-full text-center py-5 text-[18px]">
-              No Reviews have for this shop!
+              Chưa có đánh giá sản phẩm nào về cửa hàng!
             </h5>
           )}
         </div>

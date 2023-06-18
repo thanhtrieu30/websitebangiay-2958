@@ -5,14 +5,14 @@ import styles from "../../../styles/styles";
 const Hero = () => {
   return (
     <div
-      className={`relative min-h-[70vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.noramlFlex}`}
+      className={`relative min-h-[100vh] 800px:min-h-[100vh] w-full bg-cover  bg-no-repeat ${styles.noramlFlex}`}
       style={{
         backgroundImage:
-          "url(https://themes.rslahmed.dev/rafcart/assets/images/banner-2.jpg)",
+          "url(https://images.squarespace-cdn.com/content/v1/5d8454d14a88a05af46c373d/1571271633994-9VUICR2IBO9VVGZQVKUP/Jordan_pattern.jpg?format=2500w)",
       }}
     >
       <div className={`${styles.section} w-[90%] 800px:w-[60%]`}>
-        <h1
+        {/* <h1
           className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#3d3a3a] font-[600] capitalize`}
         >
           Best Collection for <br /> home Decoration
@@ -22,13 +22,13 @@ const Hero = () => {
           assumenda? Quisquam itaque <br /> exercitationem labore vel, dolore
           quidem asperiores, laudantium temporibus soluta optio consequatur{" "}
           <br /> aliquam deserunt officia. Dolorum saepe nulla provident.
-        </p>
+        </p> */}
         <Link to="/products" className="inline-block">
-            <div className={`${styles.button} mt-5`}>
-                 <span className="text-[#fff] font-[Poppins] text-[18px]">
-                    Shop Now
-                 </span>
-            </div>
+          <div className={`${styles.button} mt-5`}>
+            <span className="text-[#fff] font-[Poppins] text-[18px]">
+              Shop Now
+            </span>
+          </div>
         </Link>
       </div>
     </div>
