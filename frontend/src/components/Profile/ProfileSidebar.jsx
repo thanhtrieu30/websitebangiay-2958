@@ -22,11 +22,11 @@ const ProfileSidebar = ({ setActive, active }) => {
     axios
       .get(`${server}/user/logout`, { withCredentials: true })
       .then((res) => {
-        // document.cookie =
-        //   "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-        res.clearCookie("jwt");
+        document.cookie =
+          "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        // res.clearCookie("jwt");
         toast.success(res.data.message);
-        window.location.reload(true);
+        // window.location.reload(true);
         navigate("/login");
       })
       .catch((error) => {
