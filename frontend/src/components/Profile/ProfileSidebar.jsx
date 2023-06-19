@@ -23,7 +23,7 @@ const ProfileSidebar = ({ setActive, active }) => {
       .get(`${server}/user/logout`, { withCredentials: true })
       .then((res) => {
         document.cookie =
-          "token=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
+          "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
         toast.success(res.data.message);
         window.location.reload(true);
         navigate("/login");
