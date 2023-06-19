@@ -22,8 +22,8 @@ const ProfileSidebar = ({ setActive, active }) => {
     axios
       .get(`${server}/user/logout`, { withCredentials: true })
       .then((res) => {
-        document.cookie =
-          "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        // document.cookie =
+        //   "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         toast.success(res.data.message);
         window.location.reload(true);
         navigate("/login");
