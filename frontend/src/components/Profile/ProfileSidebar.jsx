@@ -20,8 +20,8 @@ const ProfileSidebar = ({ setActive, active }) => {
   const { user } = useSelector((state) => state.user);
   const logoutHandler = () => {
     axios
-      // .get(`${server}/user/logout`, { withCredentials: true })
-      .get(`${server}/user/logout`)
+      .get(`${server}/user/logout`, { withCredentials: true })
+      // .get(`${server}/user/logout`)
       .then((res) => {
         document.cookie =
           "token=; path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
