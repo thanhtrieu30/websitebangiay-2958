@@ -11,6 +11,7 @@ const { upload } = require("../multer");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/ErrorHandler");
 const sendShopToken = require("../utils/shopToken");
+const { BASE_CLIENT_URL } = require("../config/configuration");
 
 // create shop
 router.post("/create-shop", upload.single("file"), async (req, res, next) => {
@@ -44,7 +45,7 @@ router.post("/create-shop", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `https://websitebangiay-2958.vercel.app/seller/activation/${activationToken}`;
+    const activationUrl = `${BASE_CLIENT_URL}/seller/activation/${activationToken}`;
     // const activationUrl = `http://localhost:3000/seller/activation/${activationToken}`;
 
     try {

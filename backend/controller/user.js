@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
+const { BASE_CLIENT_URL } = require("../config/configuration");
 
 router.post("/create-user", upload.single("file"), async (req, res, next) => {
   try {
@@ -41,7 +42,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://websitebangiay-2958.vercel.app/activation/${activationToken}`;
+    const activationUrl = `${BASE_CLIENT_URL}/activation/${activationToken}`;
     // const activationUrl = `http://localhost:3000/activation/${activationToken}`;
 
     try {

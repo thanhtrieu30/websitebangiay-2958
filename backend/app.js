@@ -5,12 +5,17 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+const { BASE_CLIENT_URL } = require("./config/configuration");
+
+console.log("BEFORE_START: ", BASE_CLIENT_URL)
 
 app.use(
   cors({
     origin: [
-      "https://websitebangiay-2958.vercel.app",
-      "https://websitebangiay-2958.vercel.app/",
+      `${BASE_CLIENT_URL}`,
+      `${BASE_CLIENT_URL}/`,
+      // "https://websitebangiay-2958.vercel.app",
+      // "https://websitebangiay-2958.vercel.app/",
       // "http://localhost:3000",
       // "http://localhost:3000/",
     ],
