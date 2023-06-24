@@ -1,20 +1,41 @@
 version: '3'
 services:
+  proxy:
+    image: trieutruong30/websitebangiay-proxy-dev
+    container_name: trieutruong30.websitebangiay_proxy_dev
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
   backend:
-    image: trieutruong30/websitebangiay
-    container_name: trieutruong30.websitebangiay_backend
+    image: trieutruong30/websitebangiay-backend-dev
+    container_name: trieutruong30.websitebangiay_backend_dev
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     restart: always
     ports:
       - 8000:8000
   frontend:
-    image: trieutruong30/websitebangiay-client
-    container_name: trieutruong30.websitebangiay_client
+    image: trieutruong30/websitebangiay-client-dev
+    container_name: trieutruong30.websitebangiay_client_dev
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     restart: always
     ports:
       - 3000:80
   socket:
-    image: trieutruong30/websitebangiay-socket
-    container_name: trieutruong30.websitebangiay_socket
+    image: trieutruong30/websitebangiay-socket-dev
+    container_name: trieutruong30.websitebangiay_socket_dev
+    build:
+      context: ./socket
+      dockerfile: Dockerfile
     restart: always
     ports:
       - 4000:4000
+networks:
+  common-network:
+    driver: bridge

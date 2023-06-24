@@ -13,6 +13,8 @@ const SMPT_MAIL = process.env.SMPT_MAIL;
 const STRIPE_API_KEY = process.env.STRIPE_API_KEY;
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
+const prefix = process.env.API_PREFIX || '';
+
 module.exports = {
   BASE_CLIENT_URL, 
   BASE_API_URL,
@@ -25,5 +27,20 @@ module.exports = {
   SMPT_PASSWORD,
   SMPT_MAIL,
   STRIPE_API_KEY,
-  STRIPE_SECRET_KEY
+  STRIPE_SECRET_KEY,
+
+
+  // api
+  API_USER: `${prefix}/api/v2/user`,
+  API_CONVERSATION: `${prefix}/api/v2/conversation`,
+  API_MESSAGE: `${prefix}/api/v2/message`,
+  API_ORDER: `${prefix}/api/v2/order`,
+  API_SHOP: `${prefix}/api/v2/shop`,
+  API_PRODUCT: `${prefix}/api/v2/product`,
+  API_EVENT: `${prefix}/api/v2/event`,
+  API_COUPON: `${prefix}/api/v2/coupon`,
+  API_PAYMENT: `${prefix}/api/v2/payment`,
+  API_WITHDRAW: `${prefix}/api/v2/withdraw`,
+  API_STATIC: `${prefix}/api/v2/`,
+  API_TEST: `${prefix}/api/v2/test`,
 }

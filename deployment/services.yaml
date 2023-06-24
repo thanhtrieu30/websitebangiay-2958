@@ -1,0 +1,66 @@
+# api service
+apiVersion: v1
+kind: Service
+metadata:
+  name: websitebangiay-api-svc
+  labels: 
+    app: websitebangiay-api
+spec:
+  type: NodePort
+  selector: 
+    app: websitebangiay-api
+  ports:
+  - nodePort: 30164
+    port: 8080
+    targetPort: 8000
+
+---
+# client service
+apiVersion: v1
+kind: Service
+metadata:
+  name: websitebangiay-client-svc
+  labels: 
+    app: websitebangiay-client
+spec:
+  type: NodePort
+  selector: 
+    app: websitebangiay-client
+  ports:
+  - nodePort: 30165
+    port: 8080
+    targetPort: 80
+
+---
+# socket service
+apiVersion: v1
+kind: Service
+metadata:
+  name: websitebangiay-socket-svc
+  labels: 
+    app: websitebangiay-socket
+spec:
+  type: NodePort
+  selector: 
+    app: websitebangiay-socket
+  ports:
+  - nodePort: 30166
+    port: 8080
+    targetPort: 4000
+
+---
+# proxy service
+apiVersion: v1
+kind: Service
+metadata:
+  name: websitebangiay-proxy-svc
+  labels: 
+    app: websitebangiay-proxy
+spec:
+  type: NodePort
+  selector: 
+    app: websitebangiay-proxy
+  ports:
+  - nodePort: 30167
+    port: 8080
+    targetPort: 80

@@ -1,0 +1,94 @@
+# api deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: websitebangiay-api
+  name: websitebangiay-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: websitebangiay-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: websitebangiay-api
+    spec:
+      containers:
+        - name: trieutruong30-websitebangiay-backend
+          image: khactrieu99/websitebangiay-backend
+          ports: 
+            - containerPort: 8000
+
+---
+# client deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: websitebangiay-client
+  name: websitebangiay-client-deployment
+spec:
+  selector:
+    matchLabels:
+      app: websitebangiay-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: websitebangiay-client
+    spec:
+      containers:
+        - name: trieutruong30-websitebangiay-client
+          image: khactrieu99/websitebangiay-client
+          ports: 
+            - containerPort: 80
+
+---
+# socket deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: websitebangiay-socket
+  name: websitebangiay-socket-deployment
+spec:
+  selector:
+    matchLabels:
+      app: websitebangiay-socket
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: websitebangiay-socket
+    spec:
+      containers:
+        - name: trieutruong30-websitebangiay-socket
+          image: khactrieu99/websitebangiay-socket
+          ports: 
+            - containerPort: 4000
+
+---
+# proxy deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: websitebangiay-proxy
+  name: websitebangiay-proxy-deployment
+spec:
+  selector:
+    matchLabels:
+      app: websitebangiay-proxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: websitebangiay-proxy
+    spec:
+      containers:
+        - name: trieutruong30-websitebangiay-proxy
+          image: khactrieu99/websitebangiay-proxy
+          ports: 
+            - containerPort: 80

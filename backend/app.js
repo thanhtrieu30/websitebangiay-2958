@@ -5,7 +5,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
-const { BASE_CLIENT_URL } = require("./config/configuration");
+const { BASE_CLIENT_URL, API_STATIC, API_TEST, API_USER, API_CONVERSATION, API_MESSAGE, API_ORDER, API_SHOP, API_PRODUCT, API_EVENT, API_COUPON, API_PAYMENT, API_WITHDRAW } 
+= require("./config/configuration");
 
 console.log("BEFORE_START: ", BASE_CLIENT_URL)
 
@@ -25,8 +26,8 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/", express.static(path.join(__dirname, "./uploads")));
-app.use("/test", (req, res) => {
+app.use(API_STATIC, express.static(path.join(__dirname, "./uploads")));
+app.use(API_TEST, (req, res) => {
   res.send("Hello world!");
 });
 
@@ -51,16 +52,17 @@ const conversation = require("./controller/conversation");
 const message = require("./controller/message");
 const withdraw = require("./controller/withdraw");
 
-app.use("/api/v2/user", user);
-app.use("/api/v2/conversation", conversation);
-app.use("/api/v2/message", message);
-app.use("/api/v2/order", order);
-app.use("/api/v2/shop", shop);
-app.use("/api/v2/product", product);
-app.use("/api/v2/event", event);
-app.use("/api/v2/coupon", coupon);
-app.use("/api/v2/payment", payment);
-app.use("/api/v2/withdraw", withdraw);
+
+app.use(API_USER, user);
+app.use(API_CONVERSATION, conversation);
+app.use(API_MESSAGE, message);
+app.use(API_ORDER, order);
+app.use(API_SHOP, shop);
+app.use(API_PRODUCT, product);
+app.use(API_EVENT, event);
+app.use(API_COUPON, coupon);
+app.use(API_PAYMENT, payment);
+app.use(API_WITHDRAW, withdraw);
 
 // it's for ErrorHandling
 app.use(ErrorHandler);
