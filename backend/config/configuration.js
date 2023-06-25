@@ -41,6 +41,6 @@ module.exports = {
   API_COUPON: `${prefix}/api/v2/coupon`,
   API_PAYMENT: `${prefix}/api/v2/payment`,
   API_WITHDRAW: `${prefix}/api/v2/withdraw`,
-  API_STATIC: `${prefix}/api/v2/`,
+  API_STATIC: `${prefix}/`,
   API_TEST: `${prefix}/api/v2/test`,
 }
