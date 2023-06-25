@@ -9,10 +9,10 @@ const path = require("path");
 app.use(
   cors({
     origin: [
-      // "https://websitebangiay-2958.vercel.app",
-      // "https://websitebangiay-2958.vercel.app/",
-      "http://localhost:3000",
-      "http://localhost:3000/",
+      "https://websitebangiay-2958.vercel.app",
+      "https://websitebangiay-2958.vercel.app/",
+      // "http://localhost:3000",
+      // "http://localhost:3000/",
     ],
     credentials: true,
   })
@@ -20,7 +20,7 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/", express.static(path.join(__dirname, "./uploads")));
+app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
