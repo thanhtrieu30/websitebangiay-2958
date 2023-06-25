@@ -20,7 +20,7 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/", express.static("./uploads"));
+app.use("/", express.static("uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
